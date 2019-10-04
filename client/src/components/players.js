@@ -1,10 +1,18 @@
 import React from 'react'
 
-function Player(props){
-    console.log(props);
+function Players(props){
+    console.log(props, `props`);
     return(
-    <div key={props.id} className="player-card">
-        <h2>{props.user.name}</h2>
-    </div>
+    <>
+        {props.players.map(player => (
+            <div key={props.id} alt={props.name} className="player-card">
+                <h3 data-testid="player-name">{player.name}</h3>
+                <p>Country: {player.country}</p>
+                <p>Searches: {player.searches}</p>
+            </div>
+        ))}
+    </>
     )
 }
+
+export default Players

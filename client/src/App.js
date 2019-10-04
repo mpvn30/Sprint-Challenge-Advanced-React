@@ -1,9 +1,12 @@
 import React from 'react';
+import Players from './components/players'
+import Nav from './components/nav'
 import axios from 'axios'
+import './styles.scss';
 
 class App extends React.Component {
   state = {
-    player: []
+    players: []
   }
 
   componentDidMount() {
@@ -11,9 +14,9 @@ class App extends React.Component {
       .get('http://localhost:5000/api/players')
       .then(res => {
         this.setState({
-          user: res
+          players: res.data
         });
-        console.log(res);
+        console.log(res.data, `res-data`);
       })
       .catch(error => {
         if (!error.response) {
@@ -28,7 +31,8 @@ class App extends React.Component {
   render() {
   return (
     <div className="App">
-      <h1>Welcome to your Github followers card!</h1>
+      <Nav />
+      <Players players={this.state.players}/>
     </div>
     );
     }

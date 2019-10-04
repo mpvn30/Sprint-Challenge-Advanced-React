@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from '@testing-library/react';
+import Nav  from './components/nav';
+import App from './App'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+test('App renders without crashing', () => {
+  render(<App />);
 });
+
+test('Nav renders without crashing', () => {
+  render(<Nav />);
+});
+test('Header header is found', () => {
+  const { getByTestId } = render(<Nav />);
+
+  getByTestId(/header/i);
+});
+
